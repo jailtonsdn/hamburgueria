@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Digital - Fast Food</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Adicionando Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Cardápio Digital - Fast Food</h1>
+    </header>
+
+    <main>
+        <section id="menu">
+            <div class="categorias">
+                <div class="categoria">
+                    <h2>Hambúrgueres</h2>
+                    <article class="menu-item">
+                        <div class="item-icon"><i class="fa-solid fa-burger"></i></div>
+                        <h3>Hamburguer Clássico</h3>
+                        <p>Hamburguer com carne suculenta e queijo.</p>
+                        <p>R$ 15,00</p>
+                        <div class="customize">
+                            <p>Adicionais:</p>
+                            <input type="checkbox" id="sem_verdura1" name="sem_verdura" value="Sem Verdura">
+                            <label for="sem_verdura1">Sem Verdura</label><br>
+                            <input type="checkbox" id="extra_queijo1" name="extra_queijo" value="Extra Queijo">
+                            <label for="extra_queijo1">Extra Queijo</label>
+                        </div>
+                        <button onclick="adicionarAoCarrinho('Hamburguer Clássico', 15.00)">Adicionar ao Carrinho</button>
+                    </article>
+                </div>
+
+                <div class="categoria">
+                    <h2>Salgados</h2>
+                    <article class="menu-item">
+                        <div class="item-icon"><i class="fa-solid fa-egg"></i></div>
+                        <h3>Coxinha de Frango</h3>
+                        <p>Deliciosa coxinha de frango.</p>
+                        <p>R$ 5,00</p>
+                        <button onclick="adicionarAoCarrinho('Coxinha de Frango', 5.00)">Adicionar ao Carrinho</button>
+                    </article>
+                </div>
+
+                <div class="categoria">
+                    <h2>Bebidas</h2>
+                    <article class="menu-item">
+                        <div class="item-icon"><i class="fa-solid fa-bottle-droplet"></i></div>
+                        <h3>Refrigerante</h3>
+                        <p>Refrigerante 350ml.</p>
+                        <p>R$ 4,00</p>
+                        <button onclick="adicionarAoCarrinho('Refrigerante', 4.00)">Adicionar ao Carrinho</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botão do carrinho com ícone -->
+        <button id="cart-button" onclick="toggleModal()">
+            <i class="fa-solid fa-cart-shopping"></i> <span id="cart-count">0</span>
+        </button>
+
+        <!-- Modal do carrinho -->
+        <div id="cart-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="close">&times;</span>
+                <div id="modal-body">
+                    <div id="carrinho-content">
+                        <h2>Carrinho</h2>
+                        <div id="itens-carrinho">
+                            <p>Carrinho vazio</p>
+                        </div>
+                        <p id="total">Total: R$ 0,00</p>
+                        <button onclick="irParaFinalizacao()">Finalizar Pedido</button>
+                        <button onclick="esvaziarCarrinho()">Esvaziar Carrinho</button>
+                    </div>
+                    <div id="finalizacao-content" style="display: none;">
+                        <h2>Finalizar Pedido</h2>
+                        <form>
+                            <label for="nome">Nome Completo:</label>
+                            <input type="text" id="nome" required><br>
+
+                            <label for="endereco">Endereço:</label>
+                            <input type="text" id="endereco" required><br>
+
+                            <h3>Forma de Pagamento:</h3>
+                            <input type="radio" id="cartao" name="pagamento" value="Cartão" checked>
+                            <label for="cartao">Cartão de Débito/Crédito</label><br>
+
+                            <input type="radio" id="pix" name="pagamento" value="Pix">
+                            <label for="pix">Pix</label><br>
+
+                            <h3>Resumo do Pedido:</h3>
+                            <div id="resumo-pedido"></div>
+
+                            <button type="button" onclick="confirmarPedido()">Confirmar Pedido</button>
+                            <button type="button" onclick="cancelarPedido()">Cancelar Pedido</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
